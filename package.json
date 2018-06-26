@@ -1,0 +1,50 @@
+{
+  "name": "@rxdi/graphql-pubsub",
+  "version": "0.0.50",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rxdi/graphql.git"
+  },
+  "scripts": {
+    "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql.git --tags"
+  },
+  "author": {
+    "name": "Kristian Tachev(Stradivario)",
+    "email": "kristiqn.tachev@gmail.com"
+  },
+  "keywords": [
+    "graphql",
+    "gapi",
+    "node"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rxdi/graphql/issues"
+  },
+  "homepage": "https://github.com/rxdi/graphql#readme",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "peerDependencies": {
+    "@rxdi/core": "^0.0.50",
+    "@rxdi/hapi": "^0.0.50",
+    "@rxdi/graphql": "^0.0.50",
+    "graphql": "^0.13.2"
+  },
+  "dependencies": {
+    "@cdm-logger/server": "^3.0.2",
+
+    "banyan": "github:Stradivario/banyan",
+    "graphql-rabbitmq-subscriptions": "^1.1.0",
+    "graphql-subscriptions": "^0.5.8",
+    "subscriptions-transport-ws": "^0.9.6"
+  },
+  "devDependencies": {
+    "@rxdi/core": "^0.0.50",
+    "@rxdi/hapi": "^0.0.50",
+    "@rxdi/graphql": "^0.0.50",
+    "graphql": "^0.13.2",
+    "@types/hapi": "^17.0.12",
+    "@types/node": "^10.3.4",
+    "typescript": "^2.7.1"
+  }
+}
