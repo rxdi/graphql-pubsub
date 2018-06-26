@@ -3,10 +3,10 @@
   "version": "0.0.52",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rxdi/graphql.git"
+    "url": "https://github.com/rxdi/graphql-pubsub.git"
   },
   "scripts": {
-    "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql.git --tags"
+    "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags"
   },
   "author": {
     "name": "Kristian Tachev(Stradivario)",
@@ -19,9 +19,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rxdi/graphql/issues"
+    "url": "https://github.com/rxdi/graphql-pubsub/issues"
   },
-  "homepage": "https://github.com/rxdi/graphql#readme",
+  "homepage": "https://github.com/rxdi/graphql-pubsub#readme",
   "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {

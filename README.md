@@ -1,4 +1,4 @@
-# @rxdi Graphql Module
+# @rxdi Graphql-Pub-Sub Module
 
 ##### More information about Hapi server can be found here [Hapi](https://hapijs.com/)
 ##### For questions/issues you can write ticket [here](http://gitlab.youvolio.com/rxdi/graphql/issues)
@@ -8,16 +8,33 @@
 ##### To install this Gapi module, run:
 
 ```bash
-$ npm install @rxdi/graphql --save
+$ npm install @rxdi/graphql-pubsub --save
 ```
 
-## Consuming @rxdi/graphql
+## Consuming @rxdi/graphql-pubsub
 
 ##### Import inside AppModule or CoreModule
 ```typescript
 import { Module } from "@rxdi/core";
 import { HapiModule } from "@rxdi/hapi";
+import { GraphQLPubSubModule } from "@rxdi/graphql-pubsub";
+
+@Module({
+    imports: [
+        GraphQLPubSubModule.forRoot(),
+    ]
+})
+export class CoreModule {}
+```
+
+
+Correct usage with `@rxdi/graphql`
+
+```typescript
+import { Module } from "@rxdi/core";
+import { HapiModule } from "@rxdi/hapi";
 import { GraphQLModule } from "@rxdi/graphql";
+import { GraphQLPubSubModule } from "@rxdi/graphql-pubsub";
 
 @Module({
     imports: [
@@ -49,6 +66,7 @@ import { GraphQLModule } from "@rxdi/graphql";
                 schema: null
             }
         }),
+        GraphQLPubSubModule.forRoot(),
     ]
 })
 export class CoreModule {}
