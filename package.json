@@ -25,9 +25,9 @@
   "module": "index.js",
   "typings": "index.d.ts",
   "peerDependencies": {
-    "@rxdi/core": "^0.0.101",
-    "@rxdi/hapi": "^0.0.101",
-    "@rxdi/graphql": "^0.0.101",
+    "@rxdi/core": "^0.0.103",
+    "@rxdi/hapi": "^0.0.103",
+    "@rxdi/graphql": "^0.0.103",
     "graphql": "^0.13.2"
   },
   "dependencies": {
@@ -38,9 +38,9 @@
     "subscriptions-transport-ws": "^0.9.6"
   },
   "devDependencies": {
-    "@rxdi/core": "^0.0.101",
-    "@rxdi/hapi": "^0.0.101",
-    "@rxdi/graphql": "^0.0.101",
+    "@rxdi/core": "^0.0.103",
+    "@rxdi/hapi": "^0.0.103",
+    "@rxdi/graphql": "^0.0.103",
     "graphql": "^0.13.2",
     "@types/hapi": "^17.0.12",
     "@types/node": "^10.3.4",
