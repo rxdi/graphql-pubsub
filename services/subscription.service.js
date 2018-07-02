@@ -27,10 +27,12 @@ const execution_1 = require("graphql/execution");
 const hapi_1 = require("@rxdi/hapi");
 const hapi_2 = require("hapi");
 const graphql_1 = require("@rxdi/graphql");
+const config_tokens_1 = require("../config.tokens");
 let SubscriptionService = class SubscriptionService {
-    constructor(server, config) {
+    constructor(server, config, pubConfig) {
         this.server = server;
         this.config = config;
+        this.pubConfig = pubConfig;
     }
     OnInit() {
         console.log('Subscription');
@@ -38,11 +40,31 @@ let SubscriptionService = class SubscriptionService {
     }
     register() {
         return __awaiter(this, void 0, void 0, function* () {
-            new subscriptions_transport_ws_1.SubscriptionServer({
+            const currentC = {
                 execute: execution_1.execute,
                 subscribe: subscription_1.subscribe,
                 schema: this.config.graphqlOptions.schema,
-            }, {
+                onConnect(connectionParams) {
+                    // return connectionHookService.modifyHooks
+                    //   .onSubConnection(connectionParams);
+                    return connectionParams;
+                },
+                onOperation: (connectionParams, params, webSocket) => {
+                    return params;
+                    // return connectionHookService.modifyHooks
+                    //   .onSubOperation(
+                    //     connectionParams,
+                    //     params,
+                    //     webSocket
+                    //   );
+                }
+            };
+            if (this.pubConfig.authentication) {
+                const auth = core_1.Container.get(this.pubConfig.authentication);
+                currentC.onConnect = auth.onSubConnection.bind(auth);
+                currentC.onOperation = auth.onSubOperation.bind(auth);
+            }
+            new subscriptions_transport_ws_1.SubscriptionServer(currentC, {
                 server: this.server.listener,
                 path: '/subscriptions'
             });
@@ -53,6 +75,7 @@ SubscriptionService = __decorate([
     core_1.Service(),
     __param(0, core_1.Inject(hapi_1.HAPI_SERVER)),
     __param(1, core_1.Inject(graphql_1.GRAPHQL_PLUGIN_CONFIG)),
-    __metadata("design:paramtypes", [hapi_2.Server, Object])
+    __param(2, core_1.Inject(config_tokens_1.GRAPHQL_PUB_SUB_CONFIG)),
+    __metadata("design:paramtypes", [hapi_2.Server, Object, config_tokens_1.GRAPHQL_PUB_SUB_DI_CONFIG])
 ], SubscriptionService);
 exports.SubscriptionService = SubscriptionService;
