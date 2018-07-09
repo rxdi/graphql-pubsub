@@ -1,41 +1,22 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@rxdi/core");
-const subscription_service_1 = require("./services/subscription.service");
-const pub_sub_service_1 = require("./services/pub-sub.service");
-const config_tokens_1 = require("./config.tokens");
-let GraphQLPubSubModule = GraphQLPubSubModule_1 = class GraphQLPubSubModule {
-    static forRoot(config) {
-        return {
-            module: GraphQLPubSubModule_1,
-            services: [
-                {
-                    provide: config_tokens_1.GRAPHQL_PUB_SUB_CONFIG,
-                    useValue: config || new config_tokens_1.GRAPHQL_PUB_SUB_DI_CONFIG()
-                }
-            ]
-        };
-    }
-};
-GraphQLPubSubModule = GraphQLPubSubModule_1 = __decorate([
-    core_1.Module({
-        services: [
-            pub_sub_service_1.PubSubService,
-            subscription_service_1.SubscriptionService
-        ]
-    })
-], GraphQLPubSubModule);
-exports.GraphQLPubSubModule = GraphQLPubSubModule;
-__export(require("./config.tokens"));
-__export(require("./decorators"));
-__export(require("./services"));
-var GraphQLPubSubModule_1;
+parcelRequire=function(e,r,n,t){var i="function"==typeof parcelRequire&&parcelRequire,o="function"==typeof require&&require;function u(n,t){if(!r[n]){if(!e[n]){var f="function"==typeof parcelRequire&&parcelRequire;if(!t&&f)return f(n,!0);if(i)return i(n,!0);if(o&&"string"==typeof n)return o(n);var c=new Error("Cannot find module '"+n+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[n][1][r]||r};var l=r[n]=new u.Module(n);e[n][0].call(l.exports,p,l,l.exports,this)}return r[n].exports;function p(e){return u(p.resolve(e))}}u.isParcelRequire=!0,u.Module=function(e){this.id=e,this.bundle=u,this.exports={}},u.modules=e,u.cache=r,u.parent=i,u.register=function(r,n){e[r]=[function(e,r){r.exports=n},{}]};for(var f=0;f<n.length;f++)u(n[f]);if(n.length){var c=u(n[n.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=c:"function"==typeof define&&define.amd?define(function(){return c}):t&&(this[t]=c)}return u}({4:[function(require,module,exports) {
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});const e=require("@rxdi/core");class o{}exports.GRAPHQL_PUB_SUB_DI_CONFIG=o,exports.GRAPHQL_PUB_SUB_CONFIG=new e.InjectionToken("graphql-pub-sub-config-injection-token");
+},{}],5:[function(require,module,exports) {
+"use strict";var e,t,n,i=this&&this.__decorate||function(e,t,n,i){var r,o=arguments.length,c=o<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,n):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,t,n,i);else for(var s=e.length-1;s>=0;s--)(r=e[s])&&(c=(o<3?r(c):o>3?r(t,n,c):r(t,n))||c);return o>3&&c&&Object.defineProperty(t,n,c),c},r=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},o=this&&this.__param||function(e,t){return function(n,i){t(n,i,e)}},c=this&&this.__awaiter||function(e,t,n,i){return new(n||(n=Promise))(function(r,o){function c(e){try{u(i.next(e))}catch(e){o(e)}}function s(e){try{u(i.throw(e))}catch(e){o(e)}}function u(e){e.done?r(e.value):new n(function(t){t(e.value)}).then(c,s)}u((i=i.apply(e,t||[])).next())})};Object.defineProperty(exports,"__esModule",{value:!0});const s=require("@rxdi/core"),u=require("subscriptions-transport-ws"),a=require("graphql/subscription"),f=require("graphql/execution"),p=require("@rxdi/hapi"),h=require("hapi"),_=require("@rxdi/graphql"),b=require("../config.tokens");let l=class{constructor(e,t,n){this.server=e,this.config=t,this.pubConfig=n}OnInit(){console.log("Subscription"),this.register()}register(){return c(this,void 0,void 0,function*(){const e={execute:f.execute,subscribe:a.subscribe,schema:this.config.graphqlOptions.schema,onConnect:e=>e,onOperation:(e,t,n)=>t};if(this.pubConfig.authentication){const t=s.Container.get(this.pubConfig.authentication);e.onConnect=t.onSubConnection.bind(t),e.onOperation=t.onSubOperation.bind(t)}new u.SubscriptionServer(e,{server:this.server.listener,path:"/subscriptions"})})}};l=i([s.Service(),o(0,s.Inject(p.HAPI_SERVER)),o(1,s.Inject(_.GRAPHQL_PLUGIN_CONFIG)),o(2,s.Inject(b.GRAPHQL_PUB_SUB_CONFIG)),r("design:paramtypes",["function"==typeof(e=void 0!==h.Server&&h.Server)&&e||Object,"function"==typeof(t=void 0!==_.GRAPHQL_PLUGIN_CONFIG&&_.GRAPHQL_PLUGIN_CONFIG)&&t||Object,"function"==typeof(n=void 0!==b.GRAPHQL_PUB_SUB_DI_CONFIG&&b.GRAPHQL_PUB_SUB_DI_CONFIG)&&n||Object])],l),exports.SubscriptionService=l;
+},{"../config.tokens":4}],6:[function(require,module,exports) {
+"use strict";var e,t=this&&this.__decorate||function(e,t,r,o){var s,i=arguments.length,n=i<3?t:null===o?o=Object.getOwnPropertyDescriptor(t,r):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)n=Reflect.decorate(e,t,r,o);else for(var c=e.length-1;c>=0;c--)(s=e[c])&&(n=(i<3?s(n):i>3?s(t,r,n):s(t,r))||n);return i>3&&n&&Object.defineProperty(t,r,n),n},r=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},o=this&&this.__param||function(e,t){return function(r,o){t(r,o,e)}};Object.defineProperty(exports,"__esModule",{value:!0});const s=require("graphql-subscriptions"),i=require("graphql-rabbitmq-subscriptions"),n=require("@cdm-logger/server/lib"),c=require("@rxdi/core"),u=require("../config.tokens"),a=n.ConsoleLogger.create("<app name>",{level:"info",mode:"raw"});let f=class{constructor(e){this.config=e,this.config.pubsub?this.sub=this.config.pubsub:"production"===process.env.NODE_ENV?this.sub=new i.AmqpPubSub({config:{host:this.config.host||process.env.AMQP_HOST,port:this.config.port||process.env.AMQP_PORT},logger:a}):this.sub=new s.PubSub}asyncIterator(e){return this.sub.asyncIterator(e)}publish(e,t){return this.sub.publish(e,t)}};f=t([c.Service(),o(0,c.Inject(u.GRAPHQL_PUB_SUB_CONFIG)),r("design:paramtypes",["function"==typeof(e=void 0!==u.GRAPHQL_PUB_SUB_DI_CONFIG&&u.GRAPHQL_PUB_SUB_DI_CONFIG)&&e||Object])],f),exports.PubSubService=f;
+},{"../config.tokens":4}],25:[function(require,module,exports) {
+"use strict";function r(r,t){const e={subscribe:r};return(r,t,s)=>{const c=s,o=c.value,n=t,u=r;return c.value=function(...r){const t=o.apply(r);return Object.assign(t,e),t},u.constructor._descriptors=u.constructor._descriptors||new Map,u.constructor._descriptors.set(n,c),c}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Subscribe=r;
+},{}],20:[function(require,module,exports) {
+"use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./subscribe"));
+},{"./subscribe":25}],26:[function(require,module,exports) {
+"use strict";function t(t){return(e,r,o)=>{const s=o.value,c=e,n=r;return o.value=function(...e){const r=Object.create({});return r.resolve=s,r.args=t||null,r.method_type="subscription",r.method_name=n,r.target=c,r},c.constructor._descriptors=c.constructor._descriptors||new Map,c.constructor._descriptors.set(n,o),o}}Object.defineProperty(exports,"__esModule",{value:!0}),exports.Subscription=t;
+},{}],19:[function(require,module,exports) {
+"use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./subscription"));
+},{"./subscription":26}],12:[function(require,module,exports) {
+"use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./subscribe")),e(require("./subscription"));
+},{"./subscribe":20,"./subscription":19}],13:[function(require,module,exports) {
+"use strict";function e(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0}),e(require("./pub-sub.service")),e(require("./subscription.service"));
+},{"./pub-sub.service":6,"./subscription.service":5}],1:[function(require,module,exports) {
+"use strict";var e,r=this&&this.__decorate||function(e,r,t,o){var i,s=arguments.length,c=s<3?r:null===o?o=Object.getOwnPropertyDescriptor(r,t):o;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)c=Reflect.decorate(e,r,t,o);else for(var u=e.length-1;u>=0;u--)(i=e[u])&&(c=(s<3?i(c):s>3?i(r,t,c):i(r,t))||c);return s>3&&c&&Object.defineProperty(r,t,c),c};function t(e){for(var r in e)exports.hasOwnProperty(r)||(exports[r]=e[r])}Object.defineProperty(exports,"__esModule",{value:!0});const o=require("@rxdi/core"),i=require("./services/subscription.service"),s=require("./services/pub-sub.service"),c=require("./config.tokens");let u=e=class{static forRoot(r){return{module:e,services:[{provide:c.GRAPHQL_PUB_SUB_CONFIG,useValue:r||new c.GRAPHQL_PUB_SUB_DI_CONFIG}]}}};u=e=r([o.Module({services:[s.PubSubService,i.SubscriptionService]})],u),exports.GraphQLPubSubModule=u,t(require("./config.tokens")),t(require("./decorators")),t(require("./services"));
+},{"./services/subscription.service":5,"./services/pub-sub.service":6,"./config.tokens":4,"./decorators":12,"./services":13}]},{},[1], null)
+//# sourceMappingURL=/index.map
