@@ -44,6 +44,6 @@
     "graphql": "^0.13.2",
     "@types/hapi": "^17.0.12",
     "@types/node": "^10.3.4",
-    "typescript": "^2.7.1"
+    "typescript": "^3.0.1"
   }
 }
