@@ -32,9 +32,9 @@
     "subscriptions-transport-ws": "^0.9.6"
   },
   "devDependencies": {
-    "@rxdi/core": "^0.0.273",
-    "@rxdi/hapi": "^0.0.273",
-    "@rxdi/graphql": "^0.0.273",
+    "@rxdi/core": "^0.0.274",
+    "@rxdi/hapi": "^0.0.274",
+    "@rxdi/graphql": "^0.0.274",
     "graphql": "^0.13.2",
     "@types/hapi": "^17.0.12",
     "@types/node": "^10.3.4",
