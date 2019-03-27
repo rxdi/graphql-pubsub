@@ -3,7 +3,7 @@
   "version": "0.0.409",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rxdi/graphql-pubsub.git"
+    "url": "https://github.com/rxdi/graphql-pubsub"
   },
   "scripts": {
     "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags"
