@@ -4,5 +4,6 @@ export declare class GraphQLPubSubModule {
     static forRoot(config?: GRAPHQL_PUB_SUB_DI_CONFIG): ModuleWithServices;
 }
 export * from './config.tokens';
-export * from './decorators';
-export * from './services';
+export * from './decorators/index';
+export * from './services/index';
+export * from './helpers/index';
