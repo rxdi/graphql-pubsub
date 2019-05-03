@@ -1,14 +1,14 @@
 {
   "name": "@rxdi/graphql-pubsub",
-  "version": "0.2.14",
+  "version": "0.2.15",
   "repository": {
     "type": "git",
     "url": "https://github.com/rxdi/graphql-pubsub"
   },
-  "main": "./dist/main.js",
-  "types": "./dist/main.d.ts",
-  "module": "./dist/main.js",
-  "typings": "./dist/main.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags",
     "test": "jest",
