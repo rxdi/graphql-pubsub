@@ -6,5 +6,6 @@ export declare class GRAPHQL_PUB_SUB_DI_CONFIG {
     host?: string;
     port?: string | number;
     authentication?: any;
+    logger?: any;
 }
 export declare const GRAPHQL_PUB_SUB_CONFIG: InjectionToken<GRAPHQL_PUB_SUB_DI_CONFIG>;

@@ -7,5 +7,5 @@ export declare class PubSubService {
     sub: AmqpPubSub | PubSub;
     constructor(config: GRAPHQL_PUB_SUB_DI_CONFIG);
     asyncIterator<T>(event: any): AsyncIterator<T>;
-    publish(signal: string, data: any): boolean;
+    publish(signal: string, data: any): Promise<void>;
 }

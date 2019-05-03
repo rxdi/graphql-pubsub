@@ -1,16 +1,9 @@
 import { PubSub } from 'graphql-subscriptions';
 import { AmqpPubSub } from 'graphql-rabbitmq-subscriptions';
-import { ConsoleLogger, IConsoleLoggerSettings } from '@cdm-logger/server/lib';
-import * as Logger from 'bunyan';
 import { Service, Inject } from '@rxdi/core';
 import { GRAPHQL_PUB_SUB_CONFIG, GRAPHQL_PUB_SUB_DI_CONFIG } from '../config.tokens';
 
 export let pubsub: PubSub | AmqpPubSub;
-
-const logger: Logger = ConsoleLogger.create('<app name>', <IConsoleLoggerSettings>{
-    level: 'info', // Optional: default 'info' ('trace'|'info'|'debug'|'warn'|'error'|'fatal')
-    mode: 'raw' // Optional: default 'short' ('short'|'long'|'dev'|'raw')
-});
 
 @Service()
 export class PubSubService {
@@ -26,7 +19,13 @@ export class PubSubService {
                     host: this.config.host || process.env.AMQP_HOST,
                     port: this.config.port || process.env.AMQP_PORT,
                 },
-                logger,
+                logger: this.config.logger || {
+                    child: (log) => ({
+                      trace: (log) => console.log(log),
+                    }),
+                    trace: (log) => console.log(log),
+                    debug: (debug) => console.log(debug)
+                },
             });
         } else {
             this.sub = new PubSub();
@@ -37,7 +36,7 @@ export class PubSubService {
         return this.sub.asyncIterator<T>(event);
     }
 
-    publish(signal: string, data: any): boolean {
+    publish(signal: string, data: any): Promise<void> {
         return this.sub.publish(signal, data);
     }
 }

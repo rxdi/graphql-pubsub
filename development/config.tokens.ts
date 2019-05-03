@@ -8,6 +8,7 @@ export class GRAPHQL_PUB_SUB_DI_CONFIG {
     host?: string;
     port?: string | number;
     authentication?: any;
+    logger?: any;
 };
 
 export const GRAPHQL_PUB_SUB_CONFIG = new InjectionToken<GRAPHQL_PUB_SUB_DI_CONFIG>('graphql-pub-sub-config-injection-token');

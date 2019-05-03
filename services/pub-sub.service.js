@@ -14,13 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_subscriptions_1 = require("graphql-subscriptions");
 const graphql_rabbitmq_subscriptions_1 = require("graphql-rabbitmq-subscriptions");
-const lib_1 = require("@cdm-logger/server/lib");
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("../config.tokens");
-const logger = lib_1.ConsoleLogger.create('<app name>', {
-    level: 'info',
-    mode: 'raw' // Optional: default 'short' ('short'|'long'|'dev'|'raw')
-});
 let PubSubService = class PubSubService {
     constructor(config) {
         this.config = config;
@@ -33,7 +28,13 @@ let PubSubService = class PubSubService {
                     host: this.config.host || process.env.AMQP_HOST,
                     port: this.config.port || process.env.AMQP_PORT,
                 },
-                logger,
+                logger: this.config.logger || {
+                    child: (log) => ({
+                        trace: (log) => console.log(log),
+                    }),
+                    trace: (log) => console.log(log),
+                    debug: (debug) => console.log(debug)
+                },
             });
         }
         else {
