@@ -1,5 +1,5 @@
 import { InjectionToken } from '@rxdi/core';
-import { AmqpPubSub } from 'graphql-rabbitmq-subscriptions';
+import { AmqpPubSub } from '@rxdi/graphql-rabbitmq-subscriptions';
 import { PubSub } from 'graphql-subscriptions';
 
 export class GRAPHQL_PUB_SUB_DI_CONFIG {

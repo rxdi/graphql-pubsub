@@ -8,11 +8,7 @@ import { PubSubService } from './services/pub-sub.service';
 import { PubSubLogger } from './services/logger.service';
 
 @Module({
-    providers: [
-        PubSubService,	
-        SubscriptionService,
-        PubSubLogger,
-    ]
+  providers: [PubSubService, SubscriptionService, PubSubLogger]
 })
 export class GraphQLPubSubModule {
   public static forRoot(
@@ -21,7 +17,6 @@ export class GraphQLPubSubModule {
     return {
       module: GraphQLPubSubModule,
       services: [
-        
         {
           provide: GRAPHQL_PUB_SUB_CONFIG,
           useValue: config || new GRAPHQL_PUB_SUB_DI_CONFIG()

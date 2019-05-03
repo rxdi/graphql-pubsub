@@ -8,8 +8,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "outDir": ".",
-    "rootDir": "./development",
+    "outDir": "dist",
+    "rootDir": "./src",
     "lib": [
       "es2017",
       "es2016",
@@ -22,6 +22,10 @@
     "types": []
   },
   "files": [
-    "./development/index.ts"
+    "./src/index.ts",
+
+  ],
+  "exclude": [
+    "**/*.spec.ts"
   ]
 }

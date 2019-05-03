@@ -5,8 +5,15 @@
     "type": "git",
     "url": "https://github.com/rxdi/graphql-pubsub"
   },
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "module": "./dist/main.js",
+  "typings": "./dist/main.d.ts",
   "scripts": {
-    "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags"
+    "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags",
+    "test": "jest",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
+    "pretest": "npm run lint"
   },
   "author": {
     "name": "Kristian Tachev(Stradivario)",
@@ -22,21 +29,49 @@
     "url": "https://github.com/rxdi/graphql-pubsub/issues"
   },
   "homepage": "https://github.com/rxdi/graphql-pubsub#readme",
-  "module": "index.js",
-  "typings": "index.d.ts",
   "dependencies": {
     "apollo-link-ws": "^1.0.17",
-    "graphql-rabbitmq-subscriptions": "1.1.0",
+    "@rxdi/graphql-rabbitmq-subscriptions": "0.2.11",
     "subscriptions-transport-ws": "0.9.6",
     "ws": "6.2.1"
   },
   "devDependencies": {
     "@rxdi/core": "^0.2.11",
-    "@rxdi/hapi": "^0.2.11",
     "@rxdi/graphql": "^0.2.11",
-    "graphql": "^0.13.2",
+    "@rxdi/hapi": "^0.2.11",
+    "@types/graphql": "^14.2.0",
     "@types/hapi": "^17.0.12",
+    "@types/jest": "^23.3.2",
     "@types/node": "^10.3.4",
+    "jest": "^23.4.2",
+    "jest-cli": "^23.4.2",
+    "ts-jest": "^23.0.1",
+    "tslint": "^5.11.0",
+    "tslint-language-service": "^0.9.9",
     "typescript": "^3.0.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "rootDir": "./",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json",
+      "node"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "ts-jest"
+    },
+    "testRegex": "/src/.*\\.spec.(ts|tsx|js)$",
+    "verbose": true,
+    "collectCoverage": true
   }
 }

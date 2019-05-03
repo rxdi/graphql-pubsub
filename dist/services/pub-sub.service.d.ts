@@ -1,5 +1,5 @@
 import { PubSub } from 'graphql-subscriptions';
-import { AmqpPubSub } from 'graphql-rabbitmq-subscriptions';
+import { AmqpPubSub } from '@rxdi/graphql-rabbitmq-subscriptions';
 import { GRAPHQL_PUB_SUB_DI_CONFIG } from '../config.tokens';
 import { PubSubLogger } from './logger.service';
 export declare let pubsub: PubSub | AmqpPubSub;

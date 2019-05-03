@@ -1,5 +1,5 @@
 import { PubSub } from 'graphql-subscriptions';
-import { AmqpPubSub } from 'graphql-rabbitmq-subscriptions';
+import { AmqpPubSub } from '@rxdi/graphql-rabbitmq-subscriptions';
 import { Service, Inject } from '@rxdi/core';
 import {
   GRAPHQL_PUB_SUB_CONFIG,

@@ -13,7 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const graphql_subscriptions_1 = require("graphql-subscriptions");
-const graphql_rabbitmq_subscriptions_1 = require("graphql-rabbitmq-subscriptions");
+const graphql_rabbitmq_subscriptions_1 = require("@rxdi/graphql-rabbitmq-subscriptions");
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("../config.tokens");
 const logger_service_1 = require("./logger.service");
