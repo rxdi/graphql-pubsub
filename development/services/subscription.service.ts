@@ -1,21 +1,28 @@
-import { Plugin, Inject, Service, PluginInterface, Container } from "@rxdi/core";
+import {
+  Plugin,
+  Inject,
+  Service,
+  PluginInterface,
+  Container
+} from '@rxdi/core';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { subscribe } from 'graphql/subscription';
 import { execute } from 'graphql/execution';
-import { HAPI_SERVER } from "@rxdi/hapi";
-import { Server } from "hapi";
-import { GRAPHQL_PLUGIN_CONFIG } from "@rxdi/graphql";
-import { GRAPHQL_PUB_SUB_CONFIG, GRAPHQL_PUB_SUB_DI_CONFIG } from "../config.tokens";
+import { HAPI_SERVER } from '@rxdi/hapi';
+import { Server } from 'hapi';
+import { GRAPHQL_PLUGIN_CONFIG } from '@rxdi/graphql';
+import {
+  GRAPHQL_PUB_SUB_CONFIG,
+  GRAPHQL_PUB_SUB_DI_CONFIG
+} from '../config.tokens';
 
 @Service()
 export class SubscriptionService implements PluginInterface {
-
   constructor(
     @Inject(HAPI_SERVER) private server: Server,
     @Inject(GRAPHQL_PLUGIN_CONFIG) private config: GRAPHQL_PLUGIN_CONFIG,
     @Inject(GRAPHQL_PUB_SUB_CONFIG) private pubConfig: GRAPHQL_PUB_SUB_DI_CONFIG
-
-  ) { }
+  ) {}
 
   OnInit() {
     console.log('Subscription');
@@ -50,6 +57,6 @@ export class SubscriptionService implements PluginInterface {
     new SubscriptionServer(currentC, {
       server: this.server.listener,
       path: '/subscriptions'
-    })
+    });
   }
 }

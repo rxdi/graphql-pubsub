@@ -13,7 +13,8 @@ exports.createWebsocketLink = (options = { uri: 'ws://localhost:9000/subscriptio
     }
     catch (e) { }
     if (server) {
-        options.uri = `ws://localhost:${server.info.port || server.port}/subscriptions`;
+        options.uri = `ws://localhost:${server.info.port ||
+            server.port}/subscriptions`;
     }
     if (!core_1.Container.has(apollo_link_ws_1.WebSocketLink)) {
         core_1.Container.set(apollo_link_ws_1.WebSocketLink, new apollo_link_ws_1.WebSocketLink({
@@ -28,7 +29,10 @@ exports.createWebsocketLink = (options = { uri: 'ws://localhost:9000/subscriptio
 };
 exports.subscribeToTopic = (query, variables, link) => {
     return new rxjs_1.Observable(o => {
-        const cmd = apollo_link_1.execute(link || exports.createWebsocketLink(), { query, variables }).subscribe({
+        const cmd = apollo_link_1.execute(link || exports.createWebsocketLink(), {
+            query,
+            variables
+        }).subscribe({
             next: o.next.bind(o),
             error: o.error.bind(o),
             complete: o.complete.bind(o)

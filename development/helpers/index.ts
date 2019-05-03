@@ -17,13 +17,16 @@ export interface ExtendedServer extends Server {
   port: number | string;
 }
 
-export const createWebsocketLink = (options: WSLinkOptions = {uri: 'ws://localhost:9000/subscriptions'}) => {
+export const createWebsocketLink = (
+  options: WSLinkOptions = { uri: 'ws://localhost:9000/subscriptions' }
+) => {
   let server: ExtendedServer;
   try {
     server = Container.get<ExtendedServer>(options.server || HAPI_SERVER);
   } catch (e) {}
   if (server) {
-    options.uri = `ws://localhost:${server.info.port || server.port}/subscriptions`;
+    options.uri = `ws://localhost:${server.info.port ||
+      server.port}/subscriptions`;
   }
   if (!Container.has(WebSocketLink)) {
     Container.set(
@@ -46,12 +49,12 @@ export const subscribeToTopic = <T, V = any>(
   link?: WebSocketLink
 ): Observable<T> => {
   return new Observable<T>(o => {
-    const cmd = execute(
-      link || createWebsocketLink(),
-      { query, variables }
-    ).subscribe({
+    const cmd = execute(link || createWebsocketLink(), {
+      query,
+      variables
+    }).subscribe({
       next: o.next.bind(o),
-      error: o.error.bind(o) ,
+      error: o.error.bind(o),
       complete: o.complete.bind(o)
     });
     return () => cmd.unsubscribe();
@@ -59,7 +62,6 @@ export const subscribeToTopic = <T, V = any>(
 };
 
 export { WebSocketLink } from 'apollo-link-ws';
-
 
 // const subscription = subscribeToTopic<{data: {statusSubscription: { status: string }}}>(gql`
 //   subscription {

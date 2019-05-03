@@ -1,26 +1,34 @@
-import { Module, ModuleWithServices } from "@rxdi/core";
+import { Module, ModuleWithServices } from '@rxdi/core';
+import {
+  GRAPHQL_PUB_SUB_CONFIG,
+  GRAPHQL_PUB_SUB_DI_CONFIG
+} from './config.tokens';
 import { SubscriptionService } from './services/subscription.service';
 import { PubSubService } from './services/pub-sub.service';
-import { GRAPHQL_PUB_SUB_CONFIG, GRAPHQL_PUB_SUB_DI_CONFIG } from './config.tokens';
+import { PubSubLogger } from './services/logger.service';
 
 @Module({
-    services: [
-        PubSubService,
-        SubscriptionService
+    providers: [
+        PubSubService,	
+        SubscriptionService,
+        PubSubLogger,
     ]
 })
 export class GraphQLPubSubModule {
-    public static forRoot(config?: GRAPHQL_PUB_SUB_DI_CONFIG) : ModuleWithServices {
-        return {
-            module: GraphQLPubSubModule,
-            services: [
-                {
-                    provide: GRAPHQL_PUB_SUB_CONFIG,
-                    useValue: config || new GRAPHQL_PUB_SUB_DI_CONFIG()
-                }
-            ]
+  public static forRoot(
+    config?: GRAPHQL_PUB_SUB_DI_CONFIG
+  ): ModuleWithServices {
+    return {
+      module: GraphQLPubSubModule,
+      services: [
+        
+        {
+          provide: GRAPHQL_PUB_SUB_CONFIG,
+          useValue: config || new GRAPHQL_PUB_SUB_DI_CONFIG()
         }
-    }
+      ]
+    };
+  }
 }
 
 export * from './config.tokens';

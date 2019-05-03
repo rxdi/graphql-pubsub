@@ -11,9 +11,10 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var GraphQLPubSubModule_1;
 const core_1 = require("@rxdi/core");
+const config_tokens_1 = require("./config.tokens");
 const subscription_service_1 = require("./services/subscription.service");
 const pub_sub_service_1 = require("./services/pub-sub.service");
-const config_tokens_1 = require("./config.tokens");
+const logger_service_1 = require("./services/logger.service");
 let GraphQLPubSubModule = GraphQLPubSubModule_1 = class GraphQLPubSubModule {
     static forRoot(config) {
         return {
@@ -29,9 +30,10 @@ let GraphQLPubSubModule = GraphQLPubSubModule_1 = class GraphQLPubSubModule {
 };
 GraphQLPubSubModule = GraphQLPubSubModule_1 = __decorate([
     core_1.Module({
-        services: [
+        providers: [
             pub_sub_service_1.PubSubService,
-            subscription_service_1.SubscriptionService
+            subscription_service_1.SubscriptionService,
+            logger_service_1.PubSubLogger,
         ]
     })
 ], GraphQLPubSubModule);

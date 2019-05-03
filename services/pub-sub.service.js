@@ -16,25 +16,21 @@ const graphql_subscriptions_1 = require("graphql-subscriptions");
 const graphql_rabbitmq_subscriptions_1 = require("graphql-rabbitmq-subscriptions");
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("../config.tokens");
+const logger_service_1 = require("./logger.service");
 let PubSubService = class PubSubService {
-    constructor(config) {
+    constructor(config, logger) {
         this.config = config;
+        this.logger = logger;
         if (this.config.pubsub) {
             this.sub = this.config.pubsub;
         }
-        else if (process.env.NODE_ENV === 'production') {
+        else if (this.config.activateRabbitMQ) {
             this.sub = new graphql_rabbitmq_subscriptions_1.AmqpPubSub({
                 config: {
                     host: this.config.host || process.env.AMQP_HOST,
-                    port: this.config.port || process.env.AMQP_PORT,
+                    port: this.config.port || process.env.AMQP_PORT
                 },
-                logger: this.config.logger || {
-                    child: (log) => ({
-                        trace: (log) => console.log(log),
-                    }),
-                    trace: (log) => console.log(log),
-                    debug: (debug) => console.log(debug)
-                },
+                logger: this.config.logger || this.logger
             });
         }
         else {
@@ -51,6 +47,7 @@ let PubSubService = class PubSubService {
 PubSubService = __decorate([
     core_1.Service(),
     __param(0, core_1.Inject(config_tokens_1.GRAPHQL_PUB_SUB_CONFIG)),
-    __metadata("design:paramtypes", [config_tokens_1.GRAPHQL_PUB_SUB_DI_CONFIG])
+    __metadata("design:paramtypes", [config_tokens_1.GRAPHQL_PUB_SUB_DI_CONFIG,
+        logger_service_1.PubSubLogger])
 ], PubSubService);
 exports.PubSubService = PubSubService;

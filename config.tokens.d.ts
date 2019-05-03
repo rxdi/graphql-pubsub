@@ -6,6 +6,8 @@ export declare class GRAPHQL_PUB_SUB_DI_CONFIG {
     host?: string;
     port?: string | number;
     authentication?: any;
+    log?: boolean;
+    activateRabbitMQ?: boolean;
     logger?: any;
 }
 export declare const GRAPHQL_PUB_SUB_CONFIG: InjectionToken<GRAPHQL_PUB_SUB_DI_CONFIG>;

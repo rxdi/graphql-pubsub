@@ -27,7 +27,7 @@
   "dependencies": {
     "apollo-link-ws": "^1.0.17",
     "graphql-rabbitmq-subscriptions": "1.1.0",
-    "subscriptions-transport-ws": "0.9.16",
+    "subscriptions-transport-ws": "0.9.6",
     "ws": "6.2.1"
   },
   "devDependencies": {
