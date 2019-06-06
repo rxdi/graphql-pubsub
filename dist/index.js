@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
-Object.defineProperty(exports, "__esModule", { value: true });
 var GraphQLPubSubModule_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("./config.tokens");
 const subscription_service_1 = require("./services/subscription.service");
@@ -19,19 +19,20 @@ let GraphQLPubSubModule = GraphQLPubSubModule_1 = class GraphQLPubSubModule {
     static forRoot(config) {
         return {
             module: GraphQLPubSubModule_1,
-            services: [
+            providers: [
                 {
                     provide: config_tokens_1.GRAPHQL_PUB_SUB_CONFIG,
                     useValue: config || new config_tokens_1.GRAPHQL_PUB_SUB_DI_CONFIG()
-                }
+                },
+                pub_sub_service_1.PubSubService,
+                subscription_service_1.SubscriptionService,
+                logger_service_1.PubSubLogger
             ]
         };
     }
 };
 GraphQLPubSubModule = GraphQLPubSubModule_1 = __decorate([
-    core_1.Module({
-        providers: [pub_sub_service_1.PubSubService, subscription_service_1.SubscriptionService, logger_service_1.PubSubLogger]
-    })
+    core_1.Module()
 ], GraphQLPubSubModule);
 exports.GraphQLPubSubModule = GraphQLPubSubModule;
 __export(require("./config.tokens"));

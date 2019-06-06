@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var PubSubLogger_1;
+Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("../config.tokens");
 let PubSubLogger = PubSubLogger_1 = class PubSubLogger {
