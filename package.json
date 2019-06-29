@@ -31,14 +31,14 @@
   "homepage": "https://github.com/rxdi/graphql-pubsub#readme",
   "dependencies": {
     "apollo-link-ws": "^1.0.17",
-    "@rxdi/graphql-rabbitmq-subscriptions": "^0.6.12",
+    "@rxdi/graphql-rabbitmq-subscriptions": "^0.7.0",
     "subscriptions-transport-ws": "0.9.6",
     "ws": "6.2.1"
   },
   "devDependencies": {
-    "@rxdi/core": "^0.6.12",
-    "@rxdi/graphql": "^0.6.12",
-    "@rxdi/hapi": "^0.6.12",
+    "@rxdi/core": "^0.7.0",
+    "@rxdi/graphql": "^0.7.0",
+    "@rxdi/hapi": "^0.7.0",
     "@types/graphql": "^14.2.0",
     "@types/hapi": "^17.0.12",
     "@types/jest": "^23.3.2",
