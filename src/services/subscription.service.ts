@@ -13,7 +13,8 @@ import { Server } from 'hapi';
 import { GRAPHQL_PLUGIN_CONFIG } from '@rxdi/graphql';
 import {
   GRAPHQL_PUB_SUB_CONFIG,
-  GRAPHQL_PUB_SUB_DI_CONFIG
+  GRAPHQL_PUB_SUB_DI_CONFIG,
+  PubSubOptions
 } from '../config.tokens';
 
 @Service()
@@ -50,9 +51,20 @@ export class SubscriptionService implements PluginInterface {
       }
     };
     if (this.pubConfig.authentication) {
-      const auth: any = Container.get(this.pubConfig.authentication);
-      currentC.onConnect = auth.onSubConnection.bind(auth);
-      currentC.onOperation = auth.onSubOperation.bind(auth);
+      const auth: PubSubOptions = Container.get(this.pubConfig.authentication);
+      Object.assign(currentC, auth);
+      if (auth.onSubConnection) {
+        currentC.onConnect = auth.onSubConnection.bind(auth);
+      }
+      if (auth.onSubOperation) {
+        currentC.onOperation = auth.onSubOperation.bind(auth);
+      }
+      if (auth.onSubOperationComplete) {
+        currentC.onOperationComplete = auth.onSubOperationComplete.bind(auth);
+      }
+      if (auth.onSubDisconnect) {
+        currentC.onDisconnect = auth.onSubDisconnect.bind(auth);
+      }
     }
     new SubscriptionServer(currentC, {
       server: this.server.listener,

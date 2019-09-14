@@ -61,8 +61,19 @@ let SubscriptionService = class SubscriptionService {
             };
             if (this.pubConfig.authentication) {
                 const auth = core_1.Container.get(this.pubConfig.authentication);
-                currentC.onConnect = auth.onSubConnection.bind(auth);
-                currentC.onOperation = auth.onSubOperation.bind(auth);
+                Object.assign(currentC, auth);
+                if (auth.onSubConnection) {
+                    currentC.onConnect = auth.onSubConnection.bind(auth);
+                }
+                if (auth.onSubOperation) {
+                    currentC.onOperation = auth.onSubOperation.bind(auth);
+                }
+                if (auth.onSubOperationComplete) {
+                    currentC.onOperationComplete = auth.onSubOperationComplete.bind(auth);
+                }
+                if (auth.onSubDisconnect) {
+                    currentC.onDisconnect = auth.onSubDisconnect.bind(auth);
+                }
             }
             new subscriptions_transport_ws_1.SubscriptionServer(currentC, {
                 server: this.server.listener,
