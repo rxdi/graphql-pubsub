@@ -6,8 +6,8 @@ import {
   GRAPHQL_PUB_SUB_DI_CONFIG
 } from '../config.tokens';
 import { PubSubLogger } from './logger.service';
-
 export let pubsub: PubSub | AmqpPubSub;
+import { RemotePubsub } from './remote-pubsub.service';
 
 @Service()
 export class PubSubService {
@@ -18,6 +18,11 @@ export class PubSubService {
   ) {
     if (this.config.pubsub) {
       this.sub = this.config.pubsub;
+    } else if (this.config.remotePubsub) {
+      this.sub = new RemotePubsub({
+        host: this.config.host,
+        port: this.config.host
+      });
     } else if (this.config.activateRabbitMQ) {
       this.sub = new AmqpPubSub({
         config: {

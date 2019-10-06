@@ -4,7 +4,9 @@ import { PubSub } from 'graphql-subscriptions';
 import { ServerOptions } from 'subscriptions-transport-ws';
 export declare class GRAPHQL_PUB_SUB_DI_CONFIG {
     pubsub?: AmqpPubSub | PubSub | any;
+    remotePubsub?: boolean;
     host?: string;
+    query?: string;
     port?: string | number;
     authentication?: string;
     log?: boolean;

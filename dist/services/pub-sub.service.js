@@ -17,12 +17,19 @@ const graphql_rabbitmq_subscriptions_1 = require("@rxdi/graphql-rabbitmq-subscri
 const core_1 = require("@rxdi/core");
 const config_tokens_1 = require("../config.tokens");
 const logger_service_1 = require("./logger.service");
+const remote_pubsub_service_1 = require("./remote-pubsub.service");
 let PubSubService = class PubSubService {
     constructor(config, logger) {
         this.config = config;
         this.logger = logger;
         if (this.config.pubsub) {
             this.sub = this.config.pubsub;
+        }
+        else if (this.config.remotePubsub) {
+            this.sub = new remote_pubsub_service_1.RemotePubsub({
+                host: this.config.host,
+                port: this.config.host
+            });
         }
         else if (this.config.activateRabbitMQ) {
             this.sub = new graphql_rabbitmq_subscriptions_1.AmqpPubSub({

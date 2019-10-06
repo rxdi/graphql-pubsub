@@ -30,8 +30,9 @@
   },
   "homepage": "https://github.com/rxdi/graphql-pubsub#readme",
   "dependencies": {
-    "apollo-link-ws": "^1.0.17",
     "@rxdi/graphql-rabbitmq-subscriptions": "^0.7.21",
+    "apollo-link-ws": "^1.0.17",
+    "graphql-request": "^1.8.2",
     "subscriptions-transport-ws": "0.9.6",
     "ws": "6.2.1"
   },
