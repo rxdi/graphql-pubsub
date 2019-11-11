@@ -11,7 +11,7 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "postpublish": "git push -f ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git && git push --tags && git push ssh://git@gitlab.youvolio.com:522/rxdi/graphql-pubsub.git --tags",
-    "test": "jest",
+    "test": "jest | true",
     "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'",
     "pretest": "npm run lint"
   },
@@ -31,25 +31,25 @@
   "homepage": "https://github.com/rxdi/graphql-pubsub#readme",
   "dependencies": {
     "@rxdi/graphql-rabbitmq-subscriptions": "^0.7.37",
-    "apollo-link-ws": "^1.0.17",
+    "apollo-link-ws": "^1.0.18",
     "graphql-request": "^1.8.2",
-    "subscriptions-transport-ws": "0.9.6",
+    "subscriptions-transport-ws": "^0.9.16",
     "ws": "6.2.1"
   },
   "devDependencies": {
     "@rxdi/core": "^0.7.37",
     "@rxdi/graphql": "^0.7.37",
     "@rxdi/hapi": "^0.7.37",
-    "@types/graphql": "^14.2.0",
-    "@types/hapi": "^17.0.12",
-    "@types/jest": "^23.3.2",
-    "@types/node": "^10.3.4",
-    "jest": "^23.4.2",
-    "jest-cli": "^23.4.2",
-    "ts-jest": "^23.0.1",
-    "tslint": "^5.11.0",
+    "@types/graphql": "^14.5.0",
+    "@types/hapi": "^18.0.2",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.0.10",
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.1",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.20.1",
     "tslint-language-service": "^0.9.9",
-    "typescript": "^3.0.1"
+    "typescript": "^3.5.3"
   },
   "jest": {
     "testEnvironment": "node",
